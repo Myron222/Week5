@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form Validation</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Form Validation</h2>
+    <form id="form">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <span id="usernameError" class="error"></span><br>
+
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <span id="emailError" class="error"></span><br>
+
+        <button type="button" id="submitButton">Submit</button>
+    </form>
+
+    <script>
+        
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const usernameError = document.getElementById('usernameError');
+        const emailError = document.getElementById('emailError');
+        const submitButton = document.getElementById('submitButton');
+
+        
+        submitButton.addEventListener('click', function () {
+            
+            usernameError.textContent = '';
+            emailError.textContent = '';
+
+            let isValid = true;
+
+            
+            if (usernameInput.value.trim() === '') {
+                usernameError.textContent = 'Username is required.';
+                isValid = false;
+            }
+
+            if (!emailInput.value.includes('@')) {
+                emailError.textContent = 'Please enter a valid email.';
+                isValid = false;
+            }
+
+            
+            if (isValid) {
+                alert('Form submitted successfully!');
+            }
+        });
+    </script>
+</body>
+</html>
